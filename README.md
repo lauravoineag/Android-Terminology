@@ -35,7 +35,6 @@
 -  count(expression) = 2(value). The expression evaluates to 2. Evaluates means determining the value of the expression.  
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/8d9ecae6-8980-462b-86f4-37d2b3cb716f">
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/3f3544c5-914a-414a-b48e-c8f05c99874f">
-![Uploading image.png…]()
 
 # Data Types
 - Basic Types (String, Int, Double(Double Precision), Float(simple precision), Boolean)
@@ -46,5 +45,8 @@
 # String Template
 - contains a template expression($) followed by a variable name.
 - A template expression is evaluated, and its value gets substituted into the string.
+
+# Coding Conventions
+- <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/e603c71e-6c88-415e-9bec-79dc4c18364a">
 
 
