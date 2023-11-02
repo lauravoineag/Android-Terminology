@@ -8,6 +8,12 @@
                     - fun name(inputs){body}
 
 # Variable
+
+- *Var* is mutable, value can change
+- *Val*(read-only) keyword - when you expect the value not to change (e.g if value is 10 you cannot change to 11)
+  - cannot be reassigned, cannot edit or modify.
+  - is like declaring a constant value [constants](https://developer.android.com/kotlin/style-guide?authuser=1#constant_names)
+
 - container for a piece of data - refer to it by name to access it's value (camelCase)
 - you *define/declare* a variable to uniquely identify it.(what data to hold, data type, provide an initial value(optional))
 - declaration: val count: Int = 2. This statement creates an Int value that holds 2.
@@ -19,20 +25,22 @@
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/bfc8cba0-f6c9-4da4-89ed-c1b00bb04626">
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/c50f4dc1-43bc-4835-be5e-00e74f1f4540">
 
-- *Var* is mutable
-- *Val*(read-only) keyword - when you expect the value not to change 
-  -  cannot be reassigned, cannot edit or modify.
+
+# Incrementing (++)
+- count = count + 1
+
 
 # Expression
 - is a small unit of code that evaluates to a value. Expression can be made of variables, functions etc. 
 -  count(expression) = 2(value). The expression evaluates to 2. Evaluates means determining the value of the expression.  
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/8d9ecae6-8980-462b-86f4-37d2b3cb716f">
+<img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/3f3544c5-914a-414a-b48e-c8f05c99874f">
 ![Uploading image.png…]()
 
-
-
 # Data Types
-- Basic Types (String, Int, Double, Float, Boolean)
+- Basic Types (String, Int, Double(Double Precision), Float(simple precision), Boolean)
+  - Precision = how many decimals they can hold
+  - val trip1: Double = 3.20
 
   
 # String Template
