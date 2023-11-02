@@ -47,6 +47,6 @@
 - A template expression is evaluated, and its value gets substituted into the string.
 
 # Coding Conventions
-- <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/e603c71e-6c88-415e-9bec-79dc4c18364a">
+<img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/e603c71e-6c88-415e-9bec-79dc4c18364a">
 
 
