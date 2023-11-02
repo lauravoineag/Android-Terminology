@@ -17,15 +17,18 @@
 - x = 20 // x has been reassigned to 20 (we assigned 20 to x)
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/bea41c4a-3da3-4d08-8d48-1f7442379996">
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/bfc8cba0-f6c9-4da4-89ed-c1b00bb04626">
+<img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/c50f4dc1-43bc-4835-be5e-00e74f1f4540">
 
-
-- *Val* 
-
+- *Var* is mutable
+- *Val*(read-only) keyword - when you expect the value not to change 
+  -  cannot be reassigned, cannot edit or modify.
 
 # Expression
 - is a small unit of code that evaluates to a value. Expression can be made of variables, functions etc. 
 -  count(expression) = 2(value). The expression evaluates to 2. Evaluates means determining the value of the expression.  
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/8d9ecae6-8980-462b-86f4-37d2b3cb716f">
+![Uploading image.png…]()
+
 
 
 # Data Types
