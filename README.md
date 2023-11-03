@@ -5,8 +5,16 @@
 - *setContent()* fun within the onCreate() is used to define your layout through composable functions.
 - All fun() marked with the @Composable annotation can be called from the setContent().The annotation tells the Kotlin compiler that this fun() is used by Jetpack Compose to generate the UI.
 
-  # Compiling Code
+# Compiling Code
     - The compiler takes the Kotlin code you wrote, looks at it line by line, and translates it into something that the computer can understand. This process is called compiling your code.
+ 
+ # Compose
+ 
+  # A Composable 
+  <img width="785" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a54d48ae-25c6-4eb7-8412-81ad1240658c">
+
+   ## A Preview
+
 
 
 # Function
