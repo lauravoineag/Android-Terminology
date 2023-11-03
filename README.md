@@ -15,7 +15,8 @@
    - like a box
 
    ## Modifier
-       - Padding 
+       - Used to decorate a composable, optional parameter
+       - Padding(add space around the element) 
    
    ## A Composable
   <img width="785" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a54d48ae-25c6-4eb7-8412-81ad1240658c">
