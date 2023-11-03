@@ -35,7 +35,9 @@
     
    ## 3 LayoutElements: Column, Row(horizontally), Box
    - Modifiers to layouts to position the child elements using arrangement and alignment properties.
-   - <img width="663" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/15d1c0d1-52b3-4dab-8f60-f9374c981c2c">
+    <img width="663" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/15d1c0d1-52b3-4dab-8f60-f9374c981c2c">
+    <img width="663" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a7c11988-d2ba-4875-9363-322d0a3751fa">
+
 
    
 
