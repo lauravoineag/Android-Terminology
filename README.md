@@ -10,12 +10,26 @@
  
  # Compose
  
-  # A Composable 
+   ## Surface
+   - is a container that represents a section of UI where you can alter the appearance, eg. background color
+   - like a box
+
+   ## Modifier
+       - Padding 
+   
+   ## A Composable
   <img width="785" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a54d48ae-25c6-4eb7-8412-81ad1240658c">
 
    ## A Preview
+   - @Preview tells Android Studio that this composable should be shown in the design view of this file.
 
+# Intent
+- describe intention - I want to view "https..LinkedIn.."
+- val bestIntent = Intent(Intent.Action_View).setData(uri.parse("https..LinkedIn.."))
+- then you can launch your startActivity(bestIntent)
 
+- for navigation in your app if you have Main and SecondActivity
+- startActivity(Intent(this,SecondActivity::class.java))
 
 # Function
 - is a segment of a program that performs a specific task (camelCase)
