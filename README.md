@@ -8,6 +8,15 @@
 
 # Compiling Code
     - The compiler takes the Kotlin code you wrote, looks at it line by line, and translates it into something that the computer can understand. This process is called compiling your code.
+
+# Lambda
+
+ # Trailing lambda syntax
+    - When you pass a function as that parameter, you can use trailing lambda syntax. Last parameter is a fun().
+    - Instead of putting the function body along with the function name within the parentheses({}), you put the parentheses along with the function body after the function name. 
+    <img width="607" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/cd4ce90c-e4f2-4d1f-8232-dd9f438dfe89">
+
+
  
  # Compose
  
@@ -21,7 +30,15 @@
    ## Sp & Dp
        - sp ( scalable pixels)s a unit of measure for the font size. SP unit is the same size as the DP unit, but it resizes based on the user's preferred text size under phone settings.
        - dp (nt: density-independent pixels) for layout
-       
+   ## UI Hierarchy
+       - based on containment (one comp can contain another). The parent UI elements contain children UI elements, which in turn can contain children UI elements.
+    
+   ## 3 LayoutElements: Column, Row(horizontally), Box
+   - Modifiers to layouts to position the child elements using arrangement and alignment properties.
+   - <img width="663" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/15d1c0d1-52b3-4dab-8f60-f9374c981c2c">
+
+   
+
    ## A Composable
   <img width="785" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a54d48ae-25c6-4eb7-8412-81ad1240658c">
   - a composable describes what this piece of the UI should look like
@@ -33,9 +50,6 @@
   - Naming:
       - must be a noun, may be prefixed by adjectives(RoundIcon)
 
-
-   ## A Preview
-   - @Preview tells Android Studio that this composable should be shown in the design view of this file.
 
 # Intent
 - describe intention - I want to view "https..LinkedIn.."
@@ -106,6 +120,31 @@
 - contains a template expression($) followed by a variable name.
 - A template expression is evaluated, and its value gets substituted into the string.
 
+
+# IMAGES
+
+  ## Download the image(png)
+- click View > Tool Windows > Resource Manager > Import Drawables > Density = no density > drawable-nodpi (which stops the resizing behavior)
+- Android Studio creates a drawable-nodpi folder and places your image in it. In Android Studio project view, the resource name is displayed as androidparty.png (nodpi) --> *Drawable tab*
+- Resource Manager is a tool window that lets you import, create, manage, and use resources in your app.
+
+  ## Add an Image composable -- Image()
+  <img width="450" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/8c5252f2-db62-4078-a71c-72453c754128">
+
+  ## Scale the image
+  - adjust the scale type of the image, which says how to size the image, to make it fullscreen.
+  -  ContentScale types -> Use ContentScale.Crop parameter, -> which scales the image uniformly to maintain the aspect ratio so that the width and height of the image are equal to, or larger than, the corresponding dimension of the screen.
+    
+  ## Change Opacity
+  Image(painter = image,contentDescription = null,contentScale = ContentScale.Crop,
+   *alpha = 0.5F*)
+  
+
+  ## Resources in Jetpack
+  - Resources are the additional files and static content that your code uses, such as bitmaps, user-interface strings, animation instructions etc. You should always separate app resources, such as images and strings, from your code so that you can maintain them independently. At runtime, Android uses the appropriate resource based on the current configuration. For example, you might want to provide a different UI layout based on the screen size or different strings based on the language setting.
+  - Accessing resources can be accessed with resource IDs that are generated in your project's *R* class.
+  - An *R* class is an automatically generated class by Android that contains the IDs of all resources in the project. In most cases, the resource ID is the same as the filename
+
 # Coding Conventions
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/e603c71e-6c88-415e-9bec-79dc4c18364a">
 
@@ -113,6 +152,7 @@
 - effective - clear about what you need to do
 - efficient - no unnecessary steps from what you want to accomplish to having it done
 - accessible - easy to use
+
 
 Disclaimer: This is the content summarised from [Android Courses](https://developer.android.com/courses/android-basics-compose/course)
 
