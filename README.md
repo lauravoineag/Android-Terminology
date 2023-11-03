@@ -6,6 +6,25 @@
                     - parameters(inputs - piece of data a fun needs to perform), 
                     - body(instructions about how to perform a task) 
                     - fun name(inputs){body}
+ - the function signature: the fun name with its inputs (parameters), consists of everything before the return type.  E.g *fun birthdayGreeting(name: String, age: Int)*
+
+# Parameters 
+- pass a value to a function(add a parameter): name & data type that you pass in a function to access inside of it
+- parameters are declared/defined (inside the parenthesis)
+- parameters in Kotlin are immutable. You cannot reassign the value of a parameter from within the function body.
+
+# Named Arguments
+- When you include the parameter name when you call a function, it's called a named argument.
+- you may want to pass your arguments in a different order, such as putting one parameter in front of another
+- <img width="441" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/840fac5d-8c75-4c0d-b78d-446e039d1109">
+
+# Default Arguments
+- When you call a function, you can choose to omit arguments for which there is a default, in which case, the default is used. E.g below  *println(birthdayGreeting(age = 5))*
+- <img width="580" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/360110b1-b6b5-478b-be3b-bc14cb349df5">
+
+
+  
+  
 
 # Variable
 
