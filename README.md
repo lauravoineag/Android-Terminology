@@ -1,5 +1,14 @@
 # Android-Terminology
 
+# MainActivity
+- *onCreate()* fun is the entry point to this Android app & calls other fun() to build the user interface.
+- *setContent()* fun within the onCreate() is used to define your layout through composable functions.
+- All fun() marked with the @Composable annotation can be called from the setContent().The annotation tells the Kotlin compiler that this fun() is used by Jetpack Compose to generate the UI.
+
+  # Compiling Code
+    - The compiler takes the Kotlin code you wrote, looks at it line by line, and translates it into something that the computer can understand. This process is called compiling your code.
+
+
 # Function
 - is a segment of a program that performs a specific task (camelCase)
 - define a function - name(verb or verb phrase), 
@@ -21,10 +30,6 @@
 # Default Arguments
 - When you call a function, you can choose to omit arguments for which there is a default, in which case, the default is used. E.g below  *println(birthdayGreeting(age = 5))*
 <img width="580" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/360110b1-b6b5-478b-be3b-bc14cb349df5">
-
-
-  
-  
 
 # Variable
 
