@@ -1,5 +1,6 @@
 # Android-Terminology
 
+
 # MainActivity
 - *onCreate()* fun is the entry point to this Android app & calls other fun() to build the user interface.
 - *setContent()* fun within the onCreate() is used to define your layout through composable functions.
@@ -17,9 +18,21 @@
    ## Modifier
        - Used to decorate a composable, optional parameter
        - Padding(add space around the element) 
-   
+   ## Sp & Dp
+       - sp ( scalable pixels)s a unit of measure for the font size. SP unit is the same size as the DP unit, but it resizes based on the user's preferred text size under phone settings.
+       - dp (nt: density-independent pixels) for layout
+       
    ## A Composable
   <img width="785" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a54d48ae-25c6-4eb7-8412-81ad1240658c">
+  - a composable describes what this piece of the UI should look like
+  - is declarative(you declare how your app should look like)
+  - Doesn't return anything
+  - is immutable - there is no way to update a composable once created, instead when the app data is updated and the UI needs refreshed.Compose re-executes the composable fun() and transforms this new State into new UI representation. This is called recomposition.
+  - uses built in layouts(Columns, Images, Buttons)
+  - can use parameters to build the UI. Takes some input and generates what's shown on the screen.
+  - Naming:
+      - must be a noun, may be prefixed by adjectives(RoundIcon)
+
 
    ## A Preview
    - @Preview tells Android Studio that this composable should be shown in the design view of this file.
@@ -95,5 +108,14 @@
 
 # Coding Conventions
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/e603c71e-6c88-415e-9bec-79dc4c18364a">
+
+# What makes a great app
+- effective - clear about what you need to do
+- efficient - no unnecessary steps from what you want to accomplish to having it done
+- accessible - easy to use
+
+Disclaimer: This is the content summarised from [Android Courses](https://developer.android.com/courses/android-basics-compose/course)
+
+
 
 
