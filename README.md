@@ -26,7 +26,10 @@
 
    ## Modifier
        - Used to decorate a composable, optional parameter
-       - Padding(add space around the element) 
+       
+   ## Padding(add space around the element) 
+    <img width="769" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/c5918bb3-ddb0-4bad-8a17-d42a73af0a49">
+
    ## Sp & Dp
        - sp ( scalable pixels)s a unit of measure for the font size. SP unit is the same size as the DP unit, but it resizes based on the user's preferred text size under phone settings.
        - dp (nt: density-independent pixels) for layout
