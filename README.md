@@ -160,11 +160,12 @@
 - accessible - easy to use
 
 # Android Studio
-Android studio (will look for something that'll let it understand what kind of project it's dealing with, since it is AS, it defaults to automatically looking for gradle files, specifically build.gradle and settings.gradle.
+Android Studio(AS) (will look for something that'll let it understand what kind of project it's dealing with, since it is AS, it defaults to automatically looking for gradle files, specifically build.gradle and settings.gradle.
+
 Those two files describe to it:
-What gradle plugins to use (build.gradle)
-Where to get dependencies (build.gradle & settings.gradle sometimes)
-Which modules to import (settings.gradle 'include(":app")'
+- What gradle plugins to use (build.gradle)
+- Where to get dependencies (build.gradle & settings.gradle sometimes)
+- Which modules to import (settings.gradle 'include(":app")'
 
 Disclaimer: This is the content summarised from [Android Courses](https://developer.android.com/courses/android-basics-compose/course)
 
