@@ -67,8 +67,8 @@ fun GreetingImage(message: String, from: String) {
         Image(
             painter = image,
             contentDescription = null,
-            contentScale = ContentScale.Crop,
-            alpha = 0.5F
+            contentScale = ContentScale.Crop, //how to size the image - scales the image uniformly to maintain the aspect ratio so that the width and height of the image are equal to, or larger than, the corresponding dimension of the screen.
+            alpha = 0.5F //change in opacity
         )
         GreetingText(
             message = message,
