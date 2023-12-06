@@ -150,6 +150,19 @@
   - Resources are the additional files and static content that your code uses, such as bitmaps, user-interface strings, animation instructions etc. You should always separate app resources, such as images and strings, from your code so that you can maintain them independently. At runtime, Android uses the appropriate resource based on the current configuration. For example, you might want to provide a different UI layout based on the screen size or different strings based on the language setting.
   - Accessing resources can be accessed with resource IDs that are generated in your project's *R* class.
   - An *R* class is an automatically generated class by Android that contains the IDs of all resources in the project. In most cases, the resource ID is the same as the filename
+ 
+    ## DESIGN
+    # Create a low-fidelity prototype
+    - If you don't work with a designer, you can create a low-fidelity, or low-fi, prototype on your own. Low-fi prototype refers to a simple model, or drawing, that provides a basic idea of what the app looks like.ou can simply use a pen and paper, [Slides](http://slides.google.com/?authuser=1), or [Drawings](https://docs.google.com/drawings/?authuser=1) to help you build it.
+    - Low - fidelity image <img width="286" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/b0225ae6-6a2d-4bb0-ac28-0981b6e2dbc7">
+    - Convert image to code <img width="676" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/e8b97eb0-10b0-4560-9918-7058be877db5">
+    <img width="676" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/005cbd36-036b-4c6a-9f83-3cae26dad416">
+    <img width="676" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/83dd2cc7-fb9d-42a0-a099-1e02c2851f9f">
+
+
+
+
+    - Principles that help make design better for users - (Understanding layout)[https://m3.material.io/foundations/layout/understanding-layout/overview]
 
 # Coding Conventions
 <img width="654" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/e603c71e-6c88-415e-9bec-79dc4c18364a">
