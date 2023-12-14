@@ -9,14 +9,53 @@
 # Compiling Code
     - The compiler takes the Kotlin code you wrote, looks at it line by line, and translates it into something that the computer can understand. This process is called compiling your code.
 
-# Lambda
+# Lambdas
+    1. Kotlin treats functions like first class contructors.Functions are treated like data types like int and Strings. This means you can store functions in variables and later call this function.
+    
+    fun printHello() { "Hi there" }
+    val callMeLater = ::printHello
+    callMeLater() // "Hi there"
 
- # Trailing lambda syntax
+    2. You can pass functions as aguments to other functions and return fuctions from other functions.
+    someOtherFunction(callMeLater)
+    someOtherFunction(callMeLater:() -> Unit ) { callMeLater() }
+
+    3. Lambdas expressions
+     fun printHello() { println("Hi there") }
+     
+     A lambda expression can be stored in a variable that refers to the function
+     val helloLambda = { println("Hi there") }
+      someOtherFunction(helloLambda) //can be provided as an argument
+      someOtherFunction({ println("Hi there") }) //it can be used as an argument without providing a function name
+     
+    
+
+
+
+# Trailing lambda syntax
     - When you pass a function as that parameter, you can use trailing lambda syntax. Last parameter is a fun().
     - Instead of putting the function body along with the function name within the parentheses({}), you put the parentheses along with the function body after the function name. 
-    <img width="607" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/cd4ce90c-e4f2-4d1f-8232-dd9f438dfe89">
+<img width="607" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/cd4ce90c-e4f2-4d1f-8232-dd9f438dfe89">
 
+ # Conditionals
+    
+   ## When
+    When (parameter) {
+    condition 1 -> body
+    condition 2 -> body}
+    Sequencial evaluation
 
+   ## Conditional expressions
+    The last expression of the branch that matched will return snd assign to variable
+    Expressions must return a value
+
+    Expressions with _when_ statements
+    val name =  when (parameter) {
+    condition 1 -> body
+    condition 2 -> body}
+  
+    val name = if (condition){ body1 } else { body2 }
+      
  
  # Compose
  
