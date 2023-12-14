@@ -28,9 +28,6 @@
       someOtherFunction(helloLambda) //can be provided as an argument
       someOtherFunction({ println("Hi there") }) //it can be used as an argument without providing a function name
      
-    
-
-
 
 # Trailing lambda syntax
     - When you pass a function as that parameter, you can use trailing lambda syntax. Last parameter is a fun().
@@ -38,12 +35,31 @@
 <img width="607" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/cd4ce90c-e4f2-4d1f-8232-dd9f438dfe89">
 
  # Conditionals
+ 
+  ## If
+     "==' comparison operators
+     condition = boolean
+     The statement/expressions only execute when the condition is met(true).
+     if(condition) { body }
     
    ## When
+       Program looks more complex with multiple conditions, also known as branching. You may wonder whether you can simplify a program with an even larger number of branches.
+       
     When (parameter) {
     condition 1 -> body
     condition 2 -> body}
-    Sequencial evaluation
+    The program evaluates each condition one-by-one in sequence.
+    A body was executed, so the program ignores the third and fourth branches, and leaves the when statement.
+
+    fun main() {
+    val trafficLightColor = "Yellow"
+    when (trafficLightColor) {
+        "Red" -> println("Stop")
+        "Yellow" -> println("Slow")
+        "Green" -> println("Go")
+        else -> println("Invalid traffic-light color")}} //Slow
+  
+   [Docs - When Expressions](https://kotlinlang.org/docs/control-flow.html)
 
    ## Conditional expressions
     The last expression of the branch that matched will return snd assign to variable
@@ -56,7 +72,8 @@
   
     val name = if (condition){ body1 } else { body2 }
       
- 
+[Docs](https://developer.android.com/codelabs/basic-android-kotlin-compose-conditionals?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-2-pathway-1%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-conditionals#1)
+
  # Compose
  
    ## Surface
