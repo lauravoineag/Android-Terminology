@@ -109,6 +109,9 @@
    ## Object
    object declarations are used to declare singleton objects. Singleton pattern ensures that one, and only one, instance of an object is created and has one global point of access to that object
 
+   ## "lazy initialization" 
+   - is when object creation is purposely delayed, until you actually need that object, to avoid unnecessary computation or use of other computing resources. 
+
  # Compose
  
    ## Surface
