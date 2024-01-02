@@ -74,6 +74,14 @@
       
 [Docs](https://developer.android.com/codelabs/basic-android-kotlin-compose-conditionals?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-2-pathway-1%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-conditionals#1)
 
+# App Terms
+ 
+   ## Constructor 
+    Constructors that are automatically executed every time you create an object. The purpose of a constructor is to construct an object and assign values to the object's members. A constructor takes the same name as the class to which it belongs, and does not return any values. 
+    
+   ## INIT = when you create an object of that class this init block will run to display immediately(VM)
+   The primary constructor initializes a class instance and its properties in the class header. The class header can't contain any runnable code. If you want to run some code during object creation, use initializer blocks inside the class body. Initializer blocks are declared with the init keyword followed by curly braces. Write any code that you want to run within the curly braces.
+   
  # Compose
  
    ## Surface
