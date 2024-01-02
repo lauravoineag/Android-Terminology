@@ -77,11 +77,38 @@
 # App Terms
  
    ## Constructor 
-    Constructors that are automatically executed every time you create an object. The purpose of a constructor is to construct an object and assign values to the object's members and does not return any values. 
+   Constructors that are automatically executed every time you create an object. The purpose of a constructor is to construct an object and assign values to the object's members and does not return any values. 
     
-   ## INIT = when you create an object of that class this init block will run to display immediately(VM) - 
-   The primary constructor initializes a class instance and its properties in the class header. The class header can't contain any runnable code. If you want to run some code during object creation, use initializer blocks inside the class body. Initializer blocks are declared with the init keyword followed by curly braces. Write any code that you want to run within the curly braces.
+   ## INIT 
+   When you create an object of that class this init block will run to display immediately(VM).
+    
+   The primary constructor initializes a class instance and its properties in the class header. The class header can't contain any runnable code. If you want to run some code during object creation, use initializer blocks inside the class body. 
+   Initializer blocks are declared with the init keyword followed by curly braces. Write any code that you want to run within the curly braces.
+    
+   ## Retrofit
+   - creates a Http Request by using the contents from a service.
+
+   1.private const val BASE_URL =  "https://android.."
+     private val retrofit = Retrofit.Builder()
+     .addConverterFactory(ScalarsConverterFactory.create())
+     .baseUrl(BASE_URL)
+     .build()
    
+   2. interface ApiService {
+    @GET("photos") 
+    fun getPhotos()}
+  
+  3. Create a Retrofit service and expose the instance to the api service to the rest of the app
+     object MarsApi {
+     val retrofitService : MarsApiService by lazy { 
+       retrofit.create(MarsApiService::class.java)}
+      
+   Retrofit creates a network API for the app based on the content from the web service. It fetches data from the web service and routes it through a separate converter library that knows how to decode the data and return it in the form of objects, like String. Retrofit includes built-in support for popular data formats, such as XML and JSON. Retrofit ultimately creates the code to call and consume this service for you, including critical details, such as running the requests on background threads.
+
+
+   ## Object
+   object declarations are used to declare singleton objects. Singleton pattern ensures that one, and only one, instance of an object is created and has one global point of access to that object
+
  # Compose
  
    ## Surface
