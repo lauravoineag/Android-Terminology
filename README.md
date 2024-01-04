@@ -106,13 +106,220 @@
       
    Retrofit creates a network API for the app based on the content from the web service. It fetches data from the web service and routes it through a separate converter library that knows how to decode the data and return it in the form of objects, like String. Retrofit includes built-in support for popular data formats, such as XML and JSON. Retrofit ultimately creates the code to call and consume this service for you, including critical details, such as running the requests on background threads.
 
-
    ## Object
    object declarations are used to declare singleton objects. Singleton pattern ensures that one, and only one, instance of an object is created and has one global point of access to that object
 
    ## "lazy initialization" 
    - is when object creation is purposely delayed, until you actually need that object, to avoid unnecessary computation or use of other computing resources. 
 
+
+ ##[Coroutines](https://developer.android.com/codelabs/basic-android-kotlin-compose-coroutines-kotlin-playground?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-5-pathway-1%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-coroutines-kotlin-playground#3)
+ ### Concurrency = involves performing multiple tasks in your app at the same time.
+ To do work concurrently in your app, you will be using Kotlin coroutines. 
+ 
+  ### Coroutines 
+   = allow the execution of a block of code to be suspended and then resumed later, so that other work can be done in the meantime. Coroutines make it easier to write **asynchronous code**, which means one task doesn't need to finish completely before starting the next task, enabling multiple tasks to run concurrently.
+
+### Synchronous code - One task must finish completely before the next one is started.
+
+###  delay() 
+   = is actually a special suspending function provided by the Kotlin coroutines library and should be called only from a coroutine or another suspend function.
+
+###  runBlocking() 
+   = function from the coroutines library. runBlocking() runs an event loop, which can handle multiple tasks at once by continuing each task where it left off when it's ready to be resumed.
+
+   fun main() {
+    runBlocking {
+        println("Weather forecast")
+        delay(1000)
+        println("Sunny")}}
+
+   runBlocking() is synchronous; it will not return until all work within its lambda block is completed. That means it will wait for the work in the delay() call to complete (until one second elapses), and then continue with executing the Sunny print statement. Once all the work in the runBlocking() function is complete, the function returns, which ends the program.
+   
+   The "co-" in coroutine means cooperative. The code cooperates to share the underlying event loop when it suspends to wait for something, which allows other work to be run in the meantime. (The "-routine" part in "coroutine" means a set of instructions like a function.) In the case of this example, the coroutine suspends when it reaches the delay() call. Other work can be done in that one second when the coroutine is suspended (even though in this program, there is no other work to do). Once the duration of the delay elapses, then the coroutine resumes execution and can proceed with printing Sunny to the output.
+   
+   ###  Asynchronous code
+   
+   ###  launch() function from the coroutines library to launch a new coroutine. 
+   
+   Coroutines in Kotlin follow a key concept called structured concurrency, where your code is sequential by default and cooperates with an underlying event loop, unless you explicitly ask for concurrent execution (e.g. using launch()). The assumption is that if you call a function, it should finish its work completely by the time it returns regardless of how many coroutines it may have used in its implementation details. Even if it fails with an exception, once the exception is thrown, there are no more pending tasks from the function. Hence, all work is finished once control flow returns from the function, whether it threw an exception or completed its work successfully.
+
+   fun main() {
+    runBlocking {
+        println("Weather forecast")
+        launch {printForecast()}
+        launch {printTemperature()}
+        println("Have a good day!")}}
+
+suspend fun printForecast() {
+    delay(1000)
+    println("Sunny")}
+
+suspend fun printTemperature() {
+    delay(1000)
+    println("30\u00b0C")} 
+
+ The output is the same but you may have noticed that it is faster to run the program. Previously, you had to wait for the printForecast() suspend function to finish completely before moving onto the printTemperature() function. Now printForecast() and printTemperature() can run concurrently because they are in separate coroutines.
+
+You can observe that after the two new coroutines are launched for printForecast() and printTemperature(), you can proceed with the next instruction which prints Have a good day!. This demonstrates the "fire and forget" nature of launch(). You fire off a new coroutine with launch(), and don't have to worry about when its work is finished.
+
+Later the coroutines will complete their work, and print the remaining output statements. Once all the work (including all coroutines) in the body of the runBlocking() call have been completed, then runBlocking() returns and the program ends.
+
+###  async()
+   You won't know how long the network requests for forecast and temperature will take. If you want to display a unified weather report when both tasks are done, then the current approach with launch() isn't sufficient. That's where async() comes in.
+
+Use the async() function from the coroutines library if you care about when the coroutine finishes and need a return value from it.
+
+The async() function returns an object of type Deferred, which is like a promise that the result will be in there when it's ready. You can access the result on the Deferred object using await().
+
+fun main() {
+    runBlocking {
+        println("Weather forecast")
+        val forecast: Deferred<String> = async {getForecast()}
+        val temperature: Deferred<String> = async {getTemperature()}
+        println("${forecast.await()} ${temperature.await()}")
+        println("Have a good day!")}}
+
+suspend fun getForecast(): String {
+    delay(1000)
+    return "Sunny"}
+
+suspend fun getTemperature(): String {
+    delay(1000)
+    return "30\u00b0C"}
+
+  Replace launch with async(). After the two async() calls, you can access the result of those coroutines by calling await() on the Deferred objects. In this case, you can print the value of each coroutine using forecast.await() and temperature.await().
+    You created two coroutines that ran concurrently to get the forecast and temperature data. When they each completed, they returned a value. Then you combined the two return values into a single print statement: Sunny 30°C.
+
+  ###  Parallel Decomposition
+
+  Parallel decomposition involves taking a problem and breaking it into smaller subtasks that can be solved in parallel. When the results of the subtasks are ready, you can combine them into a final result.
+
+  fun main() {
+    runBlocking {
+        println("Weather forecast")
+        println(getWeatherReport())
+        println("Have a good day!")}}
+
+suspend fun getWeatherReport() = coroutineScope {
+    val forecast = async { getForecast() }
+    val temperature = async { getTemperature() }
+    "${forecast.await()} ${temperature.await()}"
+}
+
+suspend fun getForecast(): String {
+    delay(1000)
+    return "Sunny"}
+
+suspend fun getTemperature(): String {
+    delay(1000)
+    return "30\u00b0C"}
+
+ coroutineScope() will only return once all its work, including any coroutines it launched, have completed. In this case, both coroutines getForecast() and getTemperature() need to finish and return their respective results. Then the Sunny text and 30°C are combined and returned from the scope. This weather report of Sunny 30°C gets printed to the output, and the caller can proceed to the last print statement of Have a good day!.
+
+With coroutineScope(), even though the function is internally doing work concurrently, it appears to the caller as a synchronous operation because coroutineScope won't return until all work is done.
+
+The key insight here for structured concurrency is that you can take multiple concurrent operations and put it into a single synchronous operation, where concurrency is an implementation detail. The only requirement on the calling code is to be in a suspend function or coroutine. Other than that, the structure of the calling code doesn't need to take into account the concurrency details.
+
+### Exceptions and cancellation
+   An exception is an unexpected event that happens during execution of your code. You should implement appropriate ways of handling these exceptions, to prevent your app from crashing and impacting the user experience negatively.
+
+   Exceptions with coroutines
+
+   fun main() {
+    runBlocking {
+        println("Weather forecast")
+        try { println(getWeatherReport())} 
+        catch (e: AssertionError) {
+            println("Caught exception in runBlocking(): $e")
+            println("Report unavailable at this time") }
+        println("Have a good day!")}}
+
+suspend fun getWeatherReport() = coroutineScope {
+    val forecast = async { getForecast() }
+    val temperature = async { getTemperature() }
+    "${forecast.await()} ${temperature.await()}"}
+
+suspend fun getForecast(): String {
+    delay(1000)
+    return "Sunny"}
+
+suspend fun getTemperature(): String {
+    delay(500)
+    throw AssertionError("Temperature is invalid")
+    return "30\u00b0C"}
+
+getTemperature() function, write a throw expression using the throw keyword in Kotlin followed by a new instance of an exception which extends from Throwable. You can throw an AssertionError and pass in a message string that describes the error in more detail: throw AssertionError("Temperature is invalid"). Throwing this exception stops further execution of the getTemperature() function.
+
+You can launch a coroutine (known as the child) from another coroutine (parent). As you launch more coroutines from those coroutines, you can build up a whole hierarchy of coroutines.
+
+The coroutine executing getTemperature() and the coroutine executing getForecast() are child coroutines of the same parent coroutine. The behavior you're seeing with exceptions in coroutines is due to structured concurrency. When one of the child coroutines fails with an exception, it gets propagated upwards. The parent coroutine is cancelled, which in turn cancels any other child coroutines (e.g. the coroutine running getForecast() in this case). Lastly, the error gets propagated upwards and the program crashes with the AssertionError.
+
+getTemperature() throws an exception. In the body of the runBlocking() function, you surround the println(getWeatherReport()) call in a try-catch block. You catch the type of exception that was expected (AssertionError in the case of this example). Then you print the exception to the output as "Caught exception" followed by the error message string. To handle the error, you let the user know that the weather report is not available with an additional println() statement: Report unavailable at this time.
+
+Note that this behavior means that if there's a failure with getting the temperature, then there will be no weather report at all (even if a valid forecast was retrieved).
+
+fun main() {
+    runBlocking {
+        println("Weather forecast")
+        println(getWeatherReport())
+        println("Have a good day!")}}
+
+suspend fun getWeatherReport() = coroutineScope {
+    val forecast = async { getForecast() }
+    val temperature = async {
+        try {getTemperature()} 
+        catch (e: AssertionError) 
+        {println("Caught exception $e")
+        "{ No temperature found }"}}
+    "${forecast.await()} ${temperature.await()}"}
+
+suspend fun getForecast(): String {
+    delay(1000)
+    return "Sunny"}
+
+suspend fun getTemperature(): String {
+    delay(500)
+    throw AssertionError("Temperature is invalid")
+    return "30\u00b0C"}
+
+  calling getTemperature() failed with an exception, but the code within async() was able to catch that exception and handle it gracefully by having the coroutine still return a String that says the temperature was not found. The weather report is still able to be printed, with a successful forecast of Sunny. The temperature is missing in the weather report, but in its place, there is a message explaining that the temperature was not found. This is a better user experience than the program crashing with the error.
+
+A helpful way to think about this error handling approach is that async() is the producer when a coroutine is started with it. await() is the consumer because it's waiting to consume the result from the coroutine. The producer does the work and produces a result. The consumer consumes the result. If there's an exception in the producer, then the consumer will get that exception if it's not handled, and the coroutine will fail. However, if the producer is able to catch and handle the exception, then the consumer won't see that exception and will see a valid result.
+
+Within a try-catch statement in your coroutine code, avoid catching a general Exception because that includes a very broad range of exceptions. You could be inadvertently catching and suppressing an error that is actually a bug that should be fixed in your code. Another important reason is that cancellation of coroutines, which is discussed later in this section, depends on CancellationException. So if you catch any type of Exception including CancellationExceptions without rethrowing them, then the cancellation behavior within your coroutines may behave differently than expected. Instead, catch a specific type of exception that you expect will be thrown from your code.
+
+###  Cancellation Coroutine 
+
+A similar topic to exceptions is cancellation of coroutines. This scenario is typically user-driven when an event has caused the app to cancel work that it had previously started.
+
+For example, say that the user has selected a preference in the app that they no longer want to see temperature values in the app. They only want to know the weather forecast (e.g. Sunny), but not the exact temperature. Hence, cancel the coroutine that is currently getting the temperature data.
+
+fun main() {
+    runBlocking {
+        println("Weather forecast")
+        println(getWeatherReport())
+        println("Have a good day!")
+    }
+}
+
+suspend fun getWeatherReport() = coroutineScope {
+    val forecast = async { getForecast() }
+    val temperature = async { getTemperature() }
+    "${forecast.await()} ${temperature.await()}"
+}
+
+suspend fun getForecast(): String {
+    delay(1000)
+    return "Sunny"
+}
+
+suspend fun getTemperature(): String {
+    delay(1000)
+    return "30\u00b0C"
+}
+
+   
  # Compose
  
    ## Surface
