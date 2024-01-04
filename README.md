@@ -86,6 +86,7 @@
    Initializer blocks are declared with the init keyword followed by curly braces. Write any code that you want to run within the curly braces.
     
    ## Retrofit
+   - third party library that helps easily consume REST services. Turns the REST Api into an interface and generates implementation code from that interface. You initialise and use this code to make Http requests to the remote server. Then receive and consume the JSON data from the response. You can then use this data in your app eg to display the list data.
    - creates a Http Request by using the contents from a service.
 
    1.private const val BASE_URL =  "https://android.."
