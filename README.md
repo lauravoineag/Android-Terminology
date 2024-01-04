@@ -113,7 +113,8 @@
    - is when object creation is purposely delayed, until you actually need that object, to avoid unnecessary computation or use of other computing resources. 
 
 
- ##[Coroutines](https://developer.android.com/codelabs/basic-android-kotlin-compose-coroutines-kotlin-playground?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-5-pathway-1%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-coroutines-kotlin-playground#3)
+ ## Coroutines 
+ [Source](https://developer.android.com/codelabs/basic-android-kotlin-compose-coroutines-kotlin-playground?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-5-pathway-1%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-coroutines-kotlin-playground#3)
  ### Concurrency = involves performing multiple tasks in your app at the same time.
  To do work concurrently in your app, you will be using Kotlin coroutines. 
  
