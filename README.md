@@ -300,26 +300,184 @@ fun main() {
     runBlocking {
         println("Weather forecast")
         println(getWeatherReport())
-        println("Have a good day!")
-    }
-}
-
+        println("Have a good day!")}}
+        
 suspend fun getWeatherReport() = coroutineScope {
     val forecast = async { getForecast() }
     val temperature = async { getTemperature() }
-    "${forecast.await()} ${temperature.await()}"
-}
+    "${forecast.await()} ${temperature.await()}"}
 
 suspend fun getForecast(): String {
     delay(1000)
-    return "Sunny"
-}
+    return "Sunny"}
 
 suspend fun getTemperature(): String {
     delay(1000)
-    return "30\u00b0C"
-}
+    return "30\u00b0C"}
 
+  After some delay, cancel the coroutine that was fetching the temperature information, so that your weather report only displays the forecast. Change the return value of the coroutineScope block to only be the weather forecast string.
+    
+suspend fun getWeatherReport() = coroutineScope {
+   val forecast = async { getForecast() }
+   val temperature = async { getTemperature() }
+  delay(200)
+  temperature.cancel()
+ "${forecast.await()}"}
+
+  A coroutine can be cancelled, but it won't affect other coroutines in the same scope and the parent coroutine will not be cancelled.
+
+
+  ###  Coroutine concepts
+
+  ### Job   val job = launch { ... }
+   When you launch a coroutine with the launch() function, it returns an instance of Job. The Job holds a handle, or reference, to the coroutine, so you can manage its lifecycle. The Deferred object that is returned from a coroutine started with the async() function is a Job as well, and it holds the future result of the coroutine.
+
+   job.cancel()  The job can be used to control the life cycle, or how long the coroutine lives for, such as cancelling the coroutine if you don't need the task anymore.
+
+   With a job, you can check if it's active, cancelled, or completed. The job is completed if the coroutine and any coroutines that it launched have completed all of their work.
+
+   Job hierarchy
+   val job = launch {
+    ...             
+    val childJob = launch { ... }
+    ...}
+
+   When a coroutine launches another coroutine, the job that returns from the new coroutine is called the child of the original parent job. 
+   
+   This parent-child relationship is important because it will dictate certain behavior for the child and parent, and other children belonging to the same parent.
+If a parent job gets cancelled, then its child jobs also get cancelled.
+When a child job is canceled using job.cancel(), it terminates, but it does not cancel its parent.
+If a job fails with an exception, it cancels its parent with that exception. This is known as propagating the error upwards (to the parent, the parent's parent, and so on). .
+
+   <img width="657" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/0c3ba846-acf7-4b59-aff5-39926f6ddc21">
+
+
+ ### CoroutineScope
+
+ Coroutines are typically launched into a CoroutineScope. This ensures that we don't have coroutines that are unmanaged and get lost, which could waste resources.
+
+launch() and async() are extension functions on CoroutineScope. Call launch() or async() on the scope to create a new coroutine within that scope.
+
+A CoroutineScope is tied to a lifecycle, which sets bounds on how long the coroutines within that scope will live. If a scope gets cancelled, then its job is cancelled, and the cancellation of that propagates to its child jobs. If a child job in the scope fails with an exception, then other child jobs get cancelled, the parent job gets cancelled, and the exception gets re-thrown to the caller.
+
+### CoroutineScope in Android apps
+Android provides coroutine scope support in entities that have a well-defined lifecycle, such as Activity (lifecycleScope) and ViewModel (viewModelScope). Coroutines that are started within these scopes will adhere to the lifecycle of the corresponding entity, such as Activity or ViewModel.
+
+For example, say you start a coroutine in an Activity with the provided coroutine scope called lifecycleScope. If the activity gets destroyed, then the lifecycleScope will get canceled and all its child coroutines will automatically get canceled too. You just need to decide if the coroutine following the lifecycle of the Activity is the behavior you want.
+
+
+### Implementation Details of CoroutineScope
+If you check the source code for how CoroutineScope.kt is implemented in the Kotlin coroutines library, you can see that CoroutineScope is declared as an interface and it contains a CoroutineContext as a variable.
+
+The launch() and async() functions create a new child coroutine within that scope and the child also inherits the context from the scope. What is contained within the context? Let's discuss that next.
+
+###  CoroutineContext
+  = provides information about the context in which the coroutine will be running in. It's essentially a map that stores elements where each element has a unique key. These are not required fields, but here are some examples of what may be contained in a context:
+
+name - name of the coroutine to uniquely identify it
+job - controls the lifecycle of the coroutine
+dispatcher - dispatches the work to the appropriate thread
+exception handler - handles exceptions thrown by the code executed in the coroutine
+
+Note: These are default values for the CoroutineContext, which will be used if you don't provide values for them:
+"coroutine" for the coroutine name
+no parent job
+Dispatchers.Default for the coroutine dispatcher
+no exception handler
+
+Each of the elements in a context can be appended together with the + operator. For example, one CoroutineContext could be defined as follows:   Job() + Dispatchers.Main + exceptionHandler
+
+ecause a name is not provided, the default coroutine name is used.
+
+Within a coroutine, if you launch a new coroutine, the child coroutine will inherit the CoroutineContext from the parent coroutine, but replace the job specifically for the coroutine that just got created. You can also override any elements that were inherited from the parent context by passing in arguments to the launch() or async() functions for the parts of the context that you want to be different.
+
+scope.launch(Dispatchers.Default) {...}
+
+###  Dispatcher
+Coroutines use dispatchers to determine the thread to use for its execution. A thread can be started, does some work (executes some code), and then terminates when there's no more work to be done.
+
+When a user starts your app, the Android system creates a new process and a single thread of execution for your app, which is known as the main thread. The main thread handles many important operations for your app including Android system events, drawing the UI on the screen, handling user input events, and more. As a result, most of the code you write for your app will likely run on the main thread.
+
+There are two terms to understand when it comes to the threading behavior of your code: blocking and non-blocking. A regular function blocks the calling thread until its work is completed. That means it does not yield the calling thread until the work is done, so no other work can be done in the meantime. Conversely, non-blocking code yields the calling thread until a certain condition is met, so you can do other work in the meantime. You can use an asynchronous function to perform non-blocking work because it returns before its work is completed.
+
+In the case of Android apps, you should only call blocking code on the main thread if it will execute fairly quickly. The goal is to keep the main thread unblocked, so that it can execute work immediately if a new event is triggered. This main thread is the UI thread for your activities and is responsible for UI drawing and UI related events. When there's a change on the screen, the UI needs to be redrawn. For something like an animation on the screen, the UI needs to be redrawn frequently so that it appears like a smooth transition. If the main thread needs to execute a long-running block of work, then the screen won't update as frequently and the user will see an abrupt transition (known as "jank") or the app may hang or be slow to respond.
+
+Hence we need to move any long-running work items off the main thread and handle it in a different thread. Your app starts off with a single main thread, but you can choose to create multiple threads to perform additional work. These additional threads can be referred to as worker threads. It's perfectly fine for a long-running task to block a worker thread for a long time, because in the meantime, the main thread is unblocked and can actively respond to the user.
+
+There are some built-in dispatchers that Kotlin provides:
+
+Dispatchers.Main: Use this dispatcher to run a coroutine on the main Android thread. This dispatcher is used primarily for handling UI updates and interactions, and performing quick work.
+Dispatchers.IO: This dispatcher is optimized to perform disk or network I/O outside of the main thread. For example, read from or write to files, and execute any network operations.
+Dispatchers.Default: This is a default dispatcher used when calling launch() and async(), when no dispatcher is specified in their context. You can use this dispatcher to perform computationally-intensive work outside of the main thread. For example, processing a bitmap image file.
+Note: There's also Executor.asCoroutineDispatcher() and Handler.asCoroutineDispatcher() extensions, if you need to make a CoroutineDispatcher from a Handler or Executor that you already have available.
+
+fun main() {
+    runBlocking {
+        launch {
+            withContext(Dispatchers.Default) {
+                delay(1000)
+                println("10 results found.")}}
+        println("Loading...")}}
+
+  = wrap the contents of the launched coroutine with a call to withContext() to change the CoroutineContext that the coroutine is executed within, and specifically override the dispatcher. Switch to using the Dispatchers.Default (instead of Dispatchers.Main which is currently being used for the rest of the coroutine code in the program).
+  = Switching dispatchers is possible because withContext() is itself a suspending function. It executes the provided block of code using a new CoroutineContext. The new context comes from the context of the parent job (the outer launch() block), except it overrides the dispatcher used in the parent context with the one specified here: Dispatchers.Default. This is how we are able to go from executing work with **Dispatchers.Main** to using **Dispatchers.Default**
+
+**Add print statements to see what thread you are on by calling Thread.currentThread().name.**
+
+  fun main() {
+    runBlocking {
+        println("${Thread.currentThread().name} - runBlocking function")
+                launch {
+            println("${Thread.currentThread().name} - launch function")
+            withContext(Dispatchers.Default) {
+                println("${Thread.currentThread().name} - withContext function")
+                delay(1000)
+                println("10 results found.")}
+            println("${Thread.currentThread().name} - end of launch function")}
+        println("Loading...")}}
+    It will Print :   
+    
+   main @coroutine#1 - runBlocking function
+   Loading...
+   main @coroutine#2 - launch function
+   DefaultDispatcher-worker-1 @coroutine#2 - withContext function
+   10 results found.
+   main @coroutine#2 - end of launch function
+
+   You can observe that most of the code is executed in coroutines on the main thread. However, for the portion of your code in the withContext(Dispatchers.Default) block, that is executed in a coroutine on a Default Dispatcher worker thread (which is not the main thread). Notice that after withContext() returns, the coroutine returns to running on the main thread (as evidenced by output statement: main @coroutine#2 - end of launch function). This example demonstrates that you can switch the dispatcher by modifying the context that is used for the coroutine.
+
+If you have coroutines that were started on the main thread, and you want to move certain operations off the main thread, then you can use withContext to switch the dispatcher being used for that work. Choose appropriately from the available dispatchers: Main, Default, and IO depending on the type of operation it is. Then that work can be assigned to a thread (or group of threads called a thread pool) designated for that purpose. Coroutines can suspend themselves, and the dispatcher also influences how they resume.
+
+Note that when working with popular libraries like Room and Retrofit (in this unit and the next one), you may not have to explicitly switch the dispatcher yourself if the library code already handles doing this work using an alternative coroutine dispatcher like Dispatchers.IO. In those cases, the suspend functions that those libraries reveal may already be main-safe and can be called from a coroutine running on the main thread. The library itself will handle switching the dispatcher to one that uses worker threads.
+
+Now you've got a high-level overview of the important parts of coroutines and the role that CoroutineScope, CoroutineContext, CoroutineDispatcher, and Jobs play in shaping the lifecycle and behavior of a coroutine.
+
+###  Conclusion Coroutines:
+   Coroutines are very useful because their execution can be suspended, freeing up the underlying thread to do other work, and then the coroutine can be resumed later. This allows you to run concurrent operations in your code.
+   
+   Coroutine code in Kotlin follows the principle of structured concurrency. It is sequential by default, so you need to be explicit if you want concurrency (e.g. using launch() or async()). With structured concurrency, you can take multiple concurrent operations and put it into a single synchronous operation, where concurrency is an implementation detail. The only requirement on the calling code is to be in a suspend function or coroutine. Other than that, the structure of the calling code doesn't need to take into account the concurrency details. That makes your asynchronous code easier to read and reason about.
+   
+   Structured concurrency keeps track of each of the launched coroutines in your app and ensures that they are not lost. Coroutines can have a hierarchy—tasks might launch subtasks, which in turn can launch subtasks. Jobs maintain the parent-child relationship among coroutines, and allow you to control the lifecycle of the coroutine.
+   
+   Launch, completion, cancellation, and failure are four common operations in the coroutine's execution. To make it easier to maintain concurrent programs, structured concurrency defines principles that form the basis for how the common operations in the hierarchy are managed:
+
+  1. Launch: Launch a coroutine into a scope that has a defined boundary on how long it lives for.
+  2. Completion: The job is not complete until its child jobs are complete.
+  3. Cancellation: This operation needs to propagate downward. When a coroutine is canceled, then the child coroutines need to also be canceled.
+  4. Failure: This operation should propagate upward. When a coroutine throws an exception, then the parent will cancel all of its children, cancel itself, and propagate the exception up to its parent. This continues until the failure is caught and handled. It ensures that any errors in the code are properly reported and never lost.
+Through hands-on practice with coroutines and understanding the concepts behind coroutines, you are now better equipped to write concurrent code in your Android app. By using coroutines for asynchronous programming, your code is simpler to read and reason about, more robust in situations of cancellations and exceptions, and delivers a more optimal and responsive experience for end users.
+
+**Summary**
+
+   Coroutines enable you to write long running code that runs concurrently without learning a new style of programming. The execution of a coroutine is sequential by design.
+   Coroutines follow the principle of structured concurrency, which helps ensure that work is not lost and tied to a scope with a certain boundary on how long it lives. Your code is sequential by default and cooperates with an underlying event loop, unless you explicitly ask for concurrent execution (e.g. using launch() or async()). The assumption is that if you call a function, it should finish its work completely (unless it fails with an exception) by the time it returns regardless of how many coroutines it may have used in its implementation details.
+   The suspend modifier is used to mark a function whose execution can be suspended and resumed at a later point.
+   A suspend function can be called only from another suspending function or from a coroutine.
+   You can start a new coroutine using the launch() or async() extension functions on CoroutineScope.
+   Jobs plays an important role to ensure structured concurrency by managing the lifecycle of coroutines and maintaining the parent-child relationship.
+   A CoroutineScope controls the lifetime of coroutines through its Job and enforces cancellation and other rules to its children and their children recursively.
+   A CoroutineContext defines the behavior of a coroutine, and can include references to a job and coroutine dispatcher.
+   Coroutines use a CoroutineDispatcher to determine the threads to use for its execution.
    
  # Compose
  
