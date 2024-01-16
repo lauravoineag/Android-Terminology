@@ -1,5 +1,7 @@
 # Android-Terminology
 
+[Integrated git control in Android Studio](https://betterprogramming.pub/how-to-use-git-in-android-studio-part-1-a8a554006aad)
+
 
 # MainActivity
 - *onCreate()* fun is the entry point to this Android app & calls other fun() to build the user interface.
