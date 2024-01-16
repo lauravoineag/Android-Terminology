@@ -1,6 +1,6 @@
 # Android-Terminology
 
-[Integrated git control in Android Studio](https://betterprogramming.pub/how-to-use-git-in-android-studio-part-1-a8a554006aad)
+[Integrated git control in Android Studio](https://betterprogramming.pub/how-to-use-git-in-android-studio-part-1-a8a554006aad) [Another just in case](https://medium.com/dsc-sastra-deemed-to-be-university/a-blog-on-using-git-in-android-studio-33b2125a18df)
 
 
 # MainActivity
