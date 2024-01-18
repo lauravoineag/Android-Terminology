@@ -47,9 +47,8 @@
    ## When
        Program looks more complex with multiple conditions, also known as branching. You may wonder whether you can simplify a program with an even larger number of branches.
 
-       <img width="888" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/44c2ab69-04ac-401d-abf7-0018d35cae6e">
-       <img width="377" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/00e6e4d2-c5b1-4980-9dc5-a8bea816bfcc">
-
+   <img width="888" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/44c2ab69-04ac-401d-abf7-0018d35cae6e">
+   <img width="377" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/00e6e4d2-c5b1-4980-9dc5-a8bea816bfcc">
 
        
     When (parameter) {
