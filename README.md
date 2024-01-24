@@ -7,6 +7,9 @@
 - *onCreate()* fun is the entry point to this Android app & calls other fun() to build the user interface.
 - *setContent()* fun within the onCreate() is used to define your layout through composable functions.
 - All fun() marked with the @Composable annotation can be called from the setContent().The annotation tells the Kotlin compiler that this fun() is used by Jetpack Compose to generate the UI.
+- <img width="693" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/d154bf59-32e1-4a41-b751-deb89f3d2c1e">
+[Source](https://developer.android.com/teach)
+
 
 # Compiling Code
     - The compiler takes the Kotlin code you wrote, looks at it line by line, and translates it into something that the computer can understand. This process is called compiling your code.
