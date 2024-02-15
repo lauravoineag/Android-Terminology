@@ -93,6 +93,7 @@ Polymorphism. The word is an adaptation of the Greek root poly-, which means man
 # App Terms
  
    ## Constructor 
+   A special member function that creates instances of the class throughout the program in which it's defined.
    Constructors that are automatically executed every time you create an object. The purpose of a constructor is to construct an object and assign values to the object's members and does not return any values. 
     
    ## INIT 
