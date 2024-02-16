@@ -533,9 +533,6 @@ Through hands-on practice with coroutines and understanding the concepts behind 
     <img width="663" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/15d1c0d1-52b3-4dab-8f60-f9374c981c2c">
     <img width="663" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a7c11988-d2ba-4875-9363-322d0a3751fa">
 
-
-   
-
    ## A Composable
   <img width="785" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/a54d48ae-25c6-4eb7-8412-81ad1240658c">
   - a composable describes what this piece of the UI should look like
@@ -578,6 +575,17 @@ Through hands-on practice with coroutines and understanding the concepts behind 
 - When you call a function, you can choose to omit arguments for which there is a default, in which case, the default is used. E.g below  *println(birthdayGreeting(age = 5))*
 <img width="580" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/360110b1-b6b5-478b-be3b-bc14cb349df5">
 
+# Class Modifiers 
+Kotlin provides four visibility modifiers:
+
+- public. Default visibility modifier. Makes the declaration accessible everywhere. The properties and methods that you want used outside the class are marked as public.
+
+- private. Makes the declaration accessible in the same class or source file.
+There are likely some properties and methods that are only used inside the class, and that you don't necessarily want other classes to use. These properties and methods can be marked with the private visibility modifier to ensure that another class can't accidentally access them.
+
+- protected. Makes the declaration accessible in subclasses. The properties and methods that you want used in the class that defines them and the subclasses are marked with the protected visibility modifier.
+internal. Makes the declaration accessible in the same module. The internal modifier is similar to private, but you can access internal properties and methods from outside the class as long as it's being accessed in the same module.
+  [Source](https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-2-pathway-1%3Fauthuser%3D1%26_gl%3D1*294bh3*_up*MQ..%26gclid%3DCj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB%26gclsrc%3Daw.ds%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-classes-and-objects&_gl=1*1sc18vd*_up*MQ..&gclid=Cj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB&gclsrc=aw.ds#7)
 # Variable
 
 - *Var* is mutable, value can change
