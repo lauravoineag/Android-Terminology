@@ -47,6 +47,8 @@ Polymorphism. The word is an adaptation of the Greek root poly-, which means man
 <img width="607" alt="image" src="https://github.com/lauravoineag/Android-Terminology/assets/77536595/cd4ce90c-e4f2-4d1f-8232-dd9f438dfe89">
 
  # Conditionals
+
+  #  Getters and setters [Source](https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-2-pathway-1%3Fauthuser%3D1%26_gl%3D1*294bh3*_up*MQ..%26gclid%3DCj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB%26gclsrc%3Daw.ds%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-classes-and-objects&_gl=1*1sc18vd*_up*MQ..&gclid=Cj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB&gclsrc=aw.ds#6)
  
   ## If
      "==' comparison operators
