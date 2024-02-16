@@ -94,8 +94,10 @@ Polymorphism. The word is an adaptation of the Greek root poly-, which means man
 
    ## Class 
    Is a blueprint for an object. [Source](https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-2-pathway-1%3Fauthuser%3D1%26_gl%3D1*294bh3*_up*MQ..%26gclid%3DCj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB%26gclsrc%3Daw.ds%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-classes-and-objects&_gl=1*1sc18vd*_up*MQ..&gclid=Cj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB&gclsrc=aw.ds#2)
+   
    ## Constructor 
    A special member function that creates instances of the class throughout the program in which it's defined.
+   Constructors initialize an object and make the object ready for use. You did this when you instantiated the object. The code inside the constructor executes when the object of the class is instantiated. You can define a constructor with or without parameters. [Source](https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-2-pathway-1%3Fauthuser%3D1%26_gl%3D1*294bh3*_up*MQ..%26gclid%3DCj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB%26gclsrc%3Daw.ds%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-classes-and-objects&_gl=1*1sc18vd*_up*MQ..&gclid=Cj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB&gclsrc=aw.ds#5)
    Constructors that are automatically executed every time you create an object. The purpose of a constructor is to construct an object and assign values to the object's members and does not return any values. 
     
    ## INIT 
