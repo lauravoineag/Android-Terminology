@@ -586,6 +586,13 @@ There are likely some properties and methods that are only used inside the class
 - protected. Makes the declaration accessible in subclasses. The properties and methods that you want used in the class that defines them and the subclasses are marked with the protected visibility modifier.
 internal. Makes the declaration accessible in the same module. The internal modifier is similar to private, but you can access internal properties and methods from outside the class as long as it's being accessed in the same module.
   [Source](https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-2-pathway-1%3Fauthuser%3D1%26_gl%3D1*294bh3*_up*MQ..%26gclid%3DCj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB%26gclsrc%3Daw.ds%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-classes-and-objects&_gl=1*1sc18vd*_up*MQ..&gclid=Cj0KCQiA5rGuBhCnARIsAN11vgTZhn8GKilp9b5Umihe6ZX2e2oK_UUwm9z4gFyEvtMXMYmLUJGjnvUaAvssEALw_wcB&gclsrc=aw.ds#7)
+
+# Module 
+- is a collection of source files and build settings that let you divide your project into discrete units of functionality. Your project can have one or many modules. You can independently build, test, and debug each module.
+- 
+# Package
+- is like a directory or a folder that groups related classes, whereas a module provides a container for your app's source code, resource files, and app-level settings. A module can contain multiple packages.
+
 # Variable
 
 - *Var* is mutable, value can change
